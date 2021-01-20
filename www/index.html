@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" >
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="..\css\page_style.css" />
+    
+    <script type="text/javascript" src="..\js\page_script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArO9tE4bA9VtAAFjvLKbNYJ8q5Ck9iRbY&callback=myMap"></script>
+  </head>
+  <body>
+    <button onclick="openForm()">Check</button>
+    <div class="form-popup" id="myForm">
+      <form class="form-container" name="Form" method = "post" onsubmit="return checkForm()">
+        <label for="fever">1. Do you have a fever greater than 100F / 37.8C?</label>
+        <select id="fever" name="fever" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="cough">2. Do you have a severe cough that started or has gotten worse in the last 48 hours?</label>
+        <select id="cough" name="cough" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="breath">3. Do you have shortness of breath that started in the last 48 hours?</label>
+        <select id="breath" name="breath" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="muscle">4. Do you have muscle aches that started or has gotten worse in the last 48 hours?</label>
+        <select id="muscle" name="muscle" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="tired">5. In the last 48 hours have you felt significantly more tired than usual?</label>
+        <select id="tired" name="tired" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="nasal">6. Do you have a runny nose or nasal congestion that started or has gotten worse in the last 48 hours?</label>
+        <select id="nasal" name="nasal" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="throat">7. Do you have a sore throat that started or has gotten worse in the last 48 hours?</label>
+        <select id="throat" name="throat" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="nausea">8. Do you have nausea or diarrhea that started or has gotten worse in the last 48 hours?</label>
+        <select id="nausea" name="nausea" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="taste">9. In the last 48 hours, have you had new loss of taste or smell?</label>
+        <select id="taste" name="taste" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="chills">10. In the last 48 hours, have you had chills that are new or are getting worse?</label>
+        <select id="chills" name="chills" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="isolate">11. Are you currently being advised to quarantine or self-isolate by a health care provider or public health recommendation (i.e. Centers for Disease Control and Prevention, Health Department)?</label>
+        <select id="isolate" name="isolate" required="required">
+          <option selected disabled hidden>-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+
+        <input type="submit" value="Submit" name="Submit">
+      </form>
+    </div>
+    <div id="googleMap" style="width:100%;height:400px;"></div>
+  </body>
+</html>
