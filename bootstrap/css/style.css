@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #b92b27, #1565c0);
+}
+
+input[type="text"],
+input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+h3 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-shadow: 0 0 11px black;
+}
+
+label {
+    font-size: 19px;
+    color: white;
+    font-weight: 500;
+    display: inline-block;
+    text-shadow: 0 0 2px #886699;
+}
+input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+
+input[type="submit"]:hover {
+    background: #2ecc71
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
+.text-muted {
+    background: #1a0622;
+    color: #ff0b0b!important;
+    text-shadow: 0 0 3px black;
+    font-size: 26px;
+    padding: 8px 54px;
+    border-radius: 50px;
+}
+
+select {
+    color: #ffffff !important;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db !important;
+    padding: 10px 16px;
+    width: 219px;
+    outline: none;
+    color: #ac9999;
+    border-radius: 24px;
+    transition: 0.25s;
+    height: auto;
+}

@@ -1,5 +1,13 @@
-function openForm() {
+function displayForm() {
   document.getElementById("myForm").style.display = "block";
+  $('#check_button').hide()
+  $('#stats_button').hide()
+}
+
+function hideForm() {
+  document.getElementById("myForm").style.display = "none";
+  $('#check_button').show()
+  $('#stats_button').show()
 }
 
 function checkForm() {
@@ -14,20 +22,8 @@ function checkForm() {
   var taste = document.forms["Form"]["taste"].selectedOptions[0].value;
   var chills = document.forms["Form"]["chills"].selectedOptions[0].value;
   var isolate = document.forms["Form"]["isolate"].selectedOptions[0].value;
-  if (fever == "-- Select --" || cough == "-- Select --" || breath == "-- Select --" || muscle == "-- Select --" || tired == "-- Select --" || nasal == "-- Select --" || throat == "-- Select --" || nausea == "-- Select --" || taste == "-- Select --" || chills == "-- Select --" || isolate == "-- Select --") {
+  if (fever == '' || cough == '' || breath == '' || muscle == '' || tired == '' || nasal == '' || throat == '' || nausea == '' || taste == '' || chills == '' || isolate == '') {
     alert("Please answer all the questions asked!");
+    displayForm();
   }
-  else {
-    document.getElementById("myForm").style.display = "none";
-  }
-  
-}
-
-function myMap() {
-  document.getElementById("myMap").style.display = "block"
-  var mapProp= {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
-  };
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }

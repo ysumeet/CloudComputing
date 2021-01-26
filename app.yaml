@@ -7,9 +7,15 @@ handlers:
 - url: /css
   static_dir: css
 
+- url: /js
+  static_dir: js
+
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+
+- url: /bootstrap
+  static_dir: bootstrap
 
 - url: /.*
   script: page_handler.app
