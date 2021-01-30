@@ -2,12 +2,16 @@ function displayForm() {
   document.getElementById("myForm").style.display = "block";
   $('#check_button').hide()
   $('#stats_button').hide()
+  $('#prec').hide()
+  $('.forgot').text('');
 }
 
 function hideForm() {
   document.getElementById("myForm").style.display = "none";
   $('#check_button').show()
   $('#stats_button').show()
+  $('#prec').show ()
+  $('.forgot').text('');
 }
 
 function checkForm() {
@@ -26,4 +30,8 @@ function checkForm() {
     alert("Please answer all the questions asked!");
     displayForm();
   }
+}
+
+function showStats(){
+  window.location.href = "/stats";
 }

@@ -1,10 +1,10 @@
 # [START imports]
+from __future__ import absolute_import
 import os
 import urllib
 import json
 import jinja2
 import webapp2
-# from requests import requests
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from google.appengine.ext import ndb
@@ -48,7 +48,7 @@ class Form(ndb.Model):
 # [START create_entity]
 def create_entity(id, cred, form_data):
     element = Form(id=id, cred=cred, fever=form_data['fever'], cough=form_data['cough'], breath=form_data['breath'], muscle=form_data['muscle'], tired=form_data['tired'],
-                   nasal=form_data['nasal'], throat=form_data['throat'], nausea=form_data['nausea'], taste=form_data['taste'], chills=form_data['chills'], isolate=form_data['isolate'])
+                   nasal=form_data['nasal'], throat=form_data['throat'], nausea=form_data['nausea'], taste=form_data['taste'], chills=form_data['chills'], isolate=form_data['isolate'])        
     element.put()
     return element
 # [END create_entity]
@@ -121,7 +121,6 @@ class Register(webapp2.RequestHandler):
             else:
                 cred = Cred(name=username, password= password, state= state)
                 element = create_user(email, cred)
-                print(element)
                 self.redirect('/')
 # [End Register]
 
@@ -130,7 +129,7 @@ class FormHandler(webapp2.RequestHandler):
     def post(self):
         session = get_current_session()
         email = session['email']
-        uname = session['name']
+        uname = session['user_name']
         password = session['password']
         state = session['state']
         form_data = {
@@ -150,7 +149,7 @@ class FormHandler(webapp2.RequestHandler):
         # state = self.request.get('state').strip().upper()
         if any([True for key,value in form_data.items() if value == '']):
             template = JINJA_ENVIRONMENT.get_template('index.html')
-            self.response.write(template.render({'message':'Please answer all the questions!'}))
+            self.response.write(template.render({'message':'Please answer all the questions!', 'uname': uname}))
         else:
             # update the users record in datastore
             cred = Cred(name=uname, password=password,state= state)
@@ -163,7 +162,7 @@ class FormHandler(webapp2.RequestHandler):
                 self.redirect('/map')
             else:
                 template = JINJA_ENVIRONMENT.get_template('index.html')
-                self.response.write(template.render({'message':'No covid!'}))
+                self.response.write(template.render({'show':'show', 'uname': uname}))
                 print("No Covid")
     def get(self):
         session = get_current_session()
@@ -171,6 +170,7 @@ class FormHandler(webapp2.RequestHandler):
             user = session['user']
             uname = user.cred.name
             template_values = {
+                'check': True,  
                 'uname': uname
             }            
             template = JINJA_ENVIRONMENT.get_template('index.html')
@@ -295,6 +295,25 @@ class UpdateState(webapp2.RequestHandler):
                 self.redirect('/main')
 # [End UpdateState]
 
+# [START Stats]
+class Stats(webapp2.RequestHandler):
+   
+    STATS_PAGE = 'stats.html'
+    
+    def get(self): 
+        session = get_current_session()
+        if session.is_active():
+            user = session['user']
+            old_state = user.cred.state
+            template_values = {
+                'state': old_state
+            }            
+            template = JINJA_ENVIRONMENT.get_template(self.STATS_PAGE)
+            self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
+# [End Stats]
+
 # [START Logout]
 class Logout(webapp2.RequestHandler):
     def get(self):
@@ -313,6 +332,7 @@ app = webapp2.WSGIApplication([
     ('/state', UpdateState),
     ('/logout', Logout),
     ('/map', MapHandler),
+    ('/stats', Stats),
 ], debug=True)
 # [END app]
             
